@@ -2,14 +2,15 @@ import unittest
 import json
 from app import app
 from app.models import db
-from app.settings import DB_NAME, DB_USER, DB_PASSWORD, TOKEN_CASTING_DIRECTOR, TOKEN_CASTING_ASSISTANT, TOKEN_EXPIRED
+from app.settings import DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, TOKEN_CASTING_DIRECTOR, TOKEN_CASTING_ASSISTANT, TOKEN_EXPIRED
 
 class CastingAgencyTestCase(unittest.TestCase):
     def setUp(self):
         self.database_name = DB_NAME
         self.database_user = DB_USER
         self.database_password = DB_PASSWORD
-        self.database_path = 'postgresql://{}:{}@{}/{}'.format(DB_USER, DB_PASSWORD, 'localhost:5432', DB_NAME)
+        self.database_host = DB_HOST
+        self.database_path = 'postgresql://{}:{}@{}/{}'.format(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 
         self.app = app
         self.client = app.test_client
